@@ -96,30 +96,30 @@ int main (void) {
 	while (quit != 1) {
 		char inp = getch ();
 		definevroom ();
-		printroom ();
 		event (playact (inp));
-		mvprintw (play, plax, "@");
-		mvprintw (14, 0, "You have %d health", playhp);
-		mvprintw (0, 13, "%d %d", plax, play);
 		if (inp == 'q' || playhp <= 0)
 			quit = !quit;
-		if (inp == 's' && play == 11) {
+		if (inp == 's' && play >= 12) {
 			makeroom ();
 			play = -1;
 		}
-		if (inp == 'w' && play == 0) {
+		if (inp == 'w' && play <= -1) {
 			makeroom ();
 			play = 12;
 		}
-		if (inp == 'a' && plax == 0) {
+		if (inp == 'a' && plax <= -1) {
 			makeroom ();
 			plax = 12;
 		}
-		if (inp == 'd' && plax == 11) {
+		if (inp == 'd' && plax >= 12) {
 			makeroom ();
 			plax = -1;
 		}
-	mvprintw (11, 11, "");
+		printroom ();
+		mvprintw (play, plax, "@");
+		mvprintw (14, 0, "You have %d health", playhp);
+		mvprintw (0, 13, "%d %d", plax, play);
+		mvprintw (11, 11, "");
 	}
 	endwin ();
 
